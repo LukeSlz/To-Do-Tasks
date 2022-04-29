@@ -26,7 +26,7 @@ switch(accion) {
             modulos.eliminarTarea(tareaAEliminar-1);
             break;
     case 'filtrar':
-        let estadoBuscado = process.argv[3];
+        let estadoBuscado = process.argv.slice(3).join(' ');
         let arrayFiltrado = modulos.filtrarPorEstado(estadoBuscado);
         arrayFiltrado.map(objeto => console.log('La tarea '+objeto.titulo+' se encuentra en estado: '+objeto.estado));
         break;
