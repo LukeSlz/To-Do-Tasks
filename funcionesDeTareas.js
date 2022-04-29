@@ -14,15 +14,23 @@ function guardarTarea(objeto){
     arrayDeTareas.push(objeto);
     escribirJSON(arrayDeTareas);
 };
-
-function leerPorEstado(estadoBuscado){
+function eliminarTarea(Startingindex){
     let arrayDeTareas = archivoTareas.leerArchivo();
-    let filtrarPorEstado = arrayDeTareas.filter(estado==estadoBuscado)
-    
-    return filtrarPorEstado;
+    arrayDeTareas.splice(Startingindex,1);
+    escribirJSON(arrayDeTareas);
+}
+function filtrarPorEstado(estadoBuscado){
+    let arrayDeTareas = archivoTareas.leerArchivo();
+    let arrayFiltrado = arrayDeTareas.filter(function(value){
+        if(value.estado==estadoBuscado){
+            return value;
+        }
+    });
+    return arrayFiltrado;
 }
 module.exports = {
     archivoTareas,
-    leerPorEstado,
-    guardarTarea
-};
+    filtrarPorEstado,
+    guardarTarea,
+    eliminarTarea
+    };
